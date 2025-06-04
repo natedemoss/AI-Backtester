@@ -1,0 +1,78 @@
+BACKTESTING BOT PROJECT - MINIMALIST STRATEGY
+
+==========================
+PROJECT GOAL
+==========================
+
+Build a command-line backtesting tool that:
+- Fetches historical stock data using yfinance
+- Runs a simple SMA crossover strategy (or user-configurable)
+- Simulates buy/sell trades at close prices
+- Outputs final profit/loss, number of trades, win rate, and max drawdown
+- No plotting or dashboards — just clean CLI output
+
+==========================
+PROJECT STRUCTURE
+==========================
+
+backtest_bot/
+│
+├── config/
+│   └── config.env              # User parameters (ticker, dates, SMA lengths, quantity)
+│
+├── data/
+│   └── fetch_data.py           # Downloads OHLCV data from yfinance
+│
+├── strategy/
+│   └── sma_crossover.py        # Implements SMA crossover logic
+│
+├── backtest/
+│   └── backtester.py           # Runs trade simulation, tracks PnL and stats
+│
+├── main.py                     # Loads config, runs backtest, prints summary
+├── requirements.txt
+└── README.md
+
+==========================
+CONFIG EXAMPLE (.env)
+==========================
+
+TICKER=AAPL
+START_DATE=2020-01-01
+END_DATE=2024-01-01
+SMA_FAST=50
+SMA_SLOW=200
+TRADE_QTY=10
+
+==========================
+STRATEGY LOGIC
+==========================
+
+- Buy when SMA_FAST crosses above SMA_SLOW and no open position
+- Sell when SMA_FAST crosses below SMA_SLOW and position is open
+- Assume trades execute at closing prices
+- Track number of trades, total profit/loss, win rate, max drawdown
+
+==========================
+EXPECTED CLI OUTPUT EXAMPLE
+==========================
+
+Backtesting AAPL (SMA 50/200) from 2020-01-01 to 2024-01-01...
+
+✅ Trades Executed: 12
+💰 Total Profit: $1,530.45
+📈 Win Rate: 66.67%
+📉 Max Drawdown: $350.10
+
+==========================
+REQUIRED LIBRARIES (requirements.txt)
+==========================
+
+pandas
+numpy
+yfinance
+python-dotenv
+
+
+
+
