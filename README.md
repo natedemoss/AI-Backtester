@@ -27,7 +27,7 @@ pip install -r requirements.txt
 ```
 
 3. Configure the strategy:
-Edit `config/config.env` with your desired parameters:
+Create `config/config.env` with your desired parameters:
 ```
 TICKER=AAPL
 START_DATE=2020-01-01
